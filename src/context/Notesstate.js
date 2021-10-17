@@ -4,65 +4,47 @@ import {useState} from "react"
 
 const NoteState=(props)=>{
     const InitialNotes=[
-        {
-          "_id": "616bbeas3dasdf58a967914e75098",
-          "user": "616bbc45d58a967914e75091",
-          "title": "mytitle",
-          "description": "mydesc",
-          "tag": "Love",
-          "date": "2021-10-17T06:11:47.833Z",
-          "__v": 0
-        },
-        {
-            "_id": "616bbdea3d58a967914e75098",
-            "user": "616bbc45d58a967914e75091",
-            "title": "mytitle",
-            "description": "mydesc",
-            "tag": "Love",
-            "date": "2021-10-17T06:11:47.833Z",
-            "__v": 0
-          },
-          {
-            "_id": "616bbeaadf3ad58a967914e75098",
-            "user": "616bbc45d58a967914e75091",
-            "title": "mytitle",
-            "description": "mydesc",
-            "tag": "Love",
-            "date": "2021-10-17T06:11:47.833Z",
-            "__v": 0
-          },
-          {
-            "_id": "616bbeaa3d5adfa8ea967914e75098",
-            "user": "616bbc45d58a967914e75091",
-            "title": "mytitle",
-            "description": "mydesc",
-            "tag": "Love",
-            "date": "2021-10-17T06:11:47.833Z",
-            "__v": 0
-          },
-          {
-            "_id": "616bbea3dd58aasdfas96g7914e75098",
-            "user": "616bbc45d58a967914e75091",
-            "title": "mytitle",
-            "description": "mydesc",
-            "tag": "Love",
-            "date": "2021-10-17T06:11:47.833Z",
-            "__v": 0
-          },
-          {
-            "_id": "616bbea3d58a9sadfas67a914e75098",
-            "user": "616bbc45d58a967914e75091",
-            "title": "mytitle",
-            "description": "mydesc",
-            "tag": "Love",
-            "date": "2021-10-17T06:11:47.833Z",
-            "__v": 0
-          }
-        
       ]
       const [notes, setnotes] = useState(InitialNotes)
+      //Add a Notes
+      const addNote=(title,description,tag)=>{
+        //TODO API callsite
+        console.log("Adding a new note")
+         const note= {
+            "_id": "23616a54",
+            "user": "616ASDFbbc45d58a967914e75091",
+            "title": title,
+            "description": description,
+            "tag": "Love",
+            "date": "2021-10-17T06:11:47.833Z",
+            "__v": 0
+          };
+          setnotes(notes.concat(note))
+
+      }
+      //Delete a Notes
+      const DeleteNote=(id)=>{
+        console.log("deting the note with id "+id)
+        const newNotes=notes.filter((note)=>{ return note._id!==id})
+        setnotes(newNotes)
+      }
+      //Edit a Notes
+      const EditNote=(id,title,description,tag) =>{
+        //API CALLS
+        //logic to edit
+        console.log ("hii")
+        for (let index = 0; index < notes.length; index++) {
+          const element = notes[index];
+          if(element._id===id)
+          element.title = title;
+          element.description = description;
+          element.tag = tag;
+          
+        }
+      }
+      
    return(
-        <NoteContext.Provider value={{notes,setnotes}}>
+        <NoteContext.Provider value={{notes,setnotes,addNote,DeleteNote,EditNote}}>
             {props.children}
 
 
