@@ -1,7 +1,10 @@
-import React from "react";
+import React,{useContext} from "react";
+import Notes from "../component/Notes"
 
 const Home = () => {
+  
   return (
+    <>
     <div>
         <div className="container my-3">
       <h1>Add a Note </h1>
@@ -46,9 +49,9 @@ const Home = () => {
       </form>
       </div>
       
-      <div className="container my-3">
-    <h1>Your Notes</h1></div>
-    </div>
+      </div>
+      <Notes/>
+    </>
     
   );
 };
